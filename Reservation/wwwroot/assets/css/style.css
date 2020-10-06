@@ -7538,6 +7538,8 @@ button[type="submit"] .loading {
 
     .header.header-black .navigation-link {
         color: #ffffff;
+		font-family: "Tahoma";
+		
     }
 
     .header.header-black .dropdown-menu {
@@ -7817,7 +7819,7 @@ button[type="submit"] .loading {
 
 @media (min-width: 768px) and (max-width: 991px) {
     .navigation-link {
-        letter-spacing: 0.05em;
+        letter-spacing: 0.15em;
     }
 }
 

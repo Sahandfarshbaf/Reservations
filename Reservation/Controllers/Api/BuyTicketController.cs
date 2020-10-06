@@ -85,8 +85,6 @@ namespace Reservation.Controllers.Api
                 var contributorPayment = _repository.ContributorPayment
                     .FindByCondition(c => c.TransactionCode == Authority).FirstOrDefault();
 
-
-
                 ZarinPalVerifyRequest zarinPalVerifyRequest = new ZarinPalVerifyRequest();
                 zarinPalVerifyRequest.authority = Authority;
                 zarinPalVerifyRequest.amount = (int)contributorPayment.Amount.Value;
