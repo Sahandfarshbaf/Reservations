@@ -9,6 +9,7 @@ using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Reservation.Tools;
 using Reservation.Tools.Zarinpal;
 
 namespace Reservation.Controllers.Api
@@ -36,36 +37,73 @@ namespace Reservation.Controllers.Api
         {
             try
             {
-
-                _repository.Contributor.Create(contributor);
                 var ticket = _repository.MeetingTicket.FindByCondition(c => c.MeetingTicketId == ticketTypeId && c.Count > 0).FirstOrDefault();
                 if (ticket == null)
                 {
                     return BadRequest("All Ticket By This Type Has been Reserverd!");
                 }
 
+                var _contributor = _repository.Contributor.FindByCondition(c => c.NationalCode == contributor.NationalCode).FirstOrDefault();
+                if (_contributor == null)
+                {
 
-                ContributorTicket contributorTicket = new ContributorTicket();
-                contributorTicket.MeetingTicketId = ticket.MeetingTicketId;
+                    _repository.Contributor.Create(contributor);
+                    ContributorTicket contributorTicket = new ContributorTicket();
+                    contributorTicket.MeetingTicketId = ticket.MeetingTicketId;
 
-                contributor.ContributorTicket = new List<ContributorTicket> { contributorTicket };
+                    contributor.ContributorTicket = new List<ContributorTicket> { contributorTicket };
 
-                ZarinPallRequest request = new ZarinPallRequest();
-                request.amount = (int)(ticket.Price.Value);
-                request.description = "order NO: " + contributor.NationalCode;
-                Tools.ZarinPal.ZarinPal zarinPal = new Tools.ZarinPal.ZarinPal();
-                var res = zarinPal.Request(request);
+                    ZarinPallRequest request = new ZarinPallRequest();
+                    request.amount = (int)(ticket.Price.Value);
+                    request.description = "order NO: " + contributor.NationalCode;
+                    Tools.ZarinPal.ZarinPal zarinPal = new Tools.ZarinPal.ZarinPal();
+                    var res = zarinPal.Request(request);
 
-                ContributorPayment contributorPayment = new ContributorPayment();
-                contributorPayment.Amount = ticket.Price.Value;
-                contributorPayment.ContributorTicketId = contributorTicket.ContributorTicketId;
-                contributorPayment.TransactionCode = res.authority;
-                contributorTicket.ContributorPayment = new List<ContributorPayment> { contributorPayment };
+                    ContributorPayment contributorPayment = new ContributorPayment();
+                    contributorPayment.Amount = ticket.Price.Value;
+                    contributorPayment.ContributorTicketId = contributorTicket.ContributorTicketId;
+                    contributorPayment.TransactionCode = res.authority;
+                    contributorTicket.ContributorPayment = new List<ContributorPayment> { contributorPayment };
+
+                    _repository.Save();
+                    return Ok("https://www.zarinpal.com/pg/StartPay/" + res.authority);
+
+                }
+                else
+                {
+                    ContributorTicket contributorTicket = new ContributorTicket();
+                    contributorTicket.MeetingTicketId = ticket.MeetingTicketId;
+
+                    _contributor.ContributorTicket.Add(contributorTicket);
+
+                    ZarinPallRequest request = new ZarinPallRequest();
+                    request.amount = (int)(ticket.Price.Value);
+                    request.description = "order NO: " + contributor.NationalCode;
+                    Tools.ZarinPal.ZarinPal zarinPal = new Tools.ZarinPal.ZarinPal();
+                    var res = zarinPal.Request(request);
+
+                    ContributorPayment contributorPayment = new ContributorPayment();
+                    contributorPayment.Amount = ticket.Price.Value;
+                    contributorPayment.ContributorTicketId = contributorTicket.ContributorTicketId;
+                    contributorPayment.TransactionCode = res.authority;
+                    contributorTicket.ContributorPayment.Add(contributorPayment);
+                    _contributor.MobileNumber = contributor.MobileNumber;
+                    _contributor.Email = contributor.Email;
+                    _contributor.FirstName = contributor.FirstName;
+                    _contributor.LastName = contributor.LastName;
+                    _repository.Contributor.Update(_contributor);
+                    _repository.Save();
+                    return Ok("https://www.zarinpal.com/pg/StartPay/" + res.authority);
+
+                }
 
 
 
-                _repository.Save();
-                return Ok("https://www.zarinpal.com/pg/StartPay/" + res.authority);
+
+
+
+
+
 
 
             }
@@ -85,6 +123,8 @@ namespace Reservation.Controllers.Api
                 var contributorPayment = _repository.ContributorPayment
                     .FindByCondition(c => c.TransactionCode == Authority).FirstOrDefault();
 
+
+                Contributor contributor = _repository.ContributorTicket.FindByCondition(c => c.ContributorTicketId == contributorPayment.ContributorTicketId).Include(c => c.Contributor).Select(c => c.Contributor).FirstOrDefault();
                 ZarinPalVerifyRequest zarinPalVerifyRequest = new ZarinPalVerifyRequest();
                 zarinPalVerifyRequest.authority = Authority;
                 zarinPalVerifyRequest.amount = (int)contributorPayment.Amount.Value;
@@ -109,6 +149,9 @@ namespace Reservation.Controllers.Api
                     _repository.MeetingTicket.Update(meetingTicket);
 
                     _repository.Save();
+                    SendEmail sendEmail = new SendEmail();
+                    sendEmail.SendSuccessfullBuy(contributor.FirstName + " " + contributor.LastName, Authority, contributor.Email);
+
 
                     return Ok("success");
                 }
