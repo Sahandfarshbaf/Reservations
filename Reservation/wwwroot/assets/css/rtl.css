@@ -16,10 +16,10 @@
 
 
 
-/*.section {
+.section {
     direction: rtl !important;
 }
-*/
+
 
 h1, p, b, h2, body, h3, h4, h6 {
     font-family: mellatweb-isans !important
