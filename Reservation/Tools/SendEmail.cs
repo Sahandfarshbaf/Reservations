@@ -18,15 +18,16 @@ namespace Reservation.Tools
 
             // create email message
             var email = new MimeMessage();
-            email.Sender = MailboxAddress.Parse("Sahand.farshbaf@gmail.com");
+            email.Sender = MailboxAddress.Parse("event@negahglobal.com");
             email.To.Add(MailboxAddress.Parse(emaill));
 
             email.Subject = "خرید بلیط";
             var body = fullName + " عزیز";
             body += System.Environment.NewLine;
-            body += "خرید بلیط همایش شوالیه با موفقیت انجام پذیرفت";
+            body += "خرید بلیط همایش شوالیه مدیران برتر با موفقیت انجام پذیرفت";
             body += System.Environment.NewLine;
             body += "شماره بلیط:  ";
+            
             body += ticketNo;
            
             email.Body = new TextPart(TextFormat.Text) { Text = body };
