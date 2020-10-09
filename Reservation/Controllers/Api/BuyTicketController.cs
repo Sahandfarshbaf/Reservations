@@ -86,6 +86,7 @@ namespace Reservation.Controllers.Api
                     contributorPayment.Amount = ticket.Price.Value;
                     contributorPayment.ContributorTicketId = contributorTicket.ContributorTicketId;
                     contributorPayment.TransactionCode = res.authority;
+                    contributorPayment.TransactionDate = DateTime.Now.Ticks;
                     contributorTicket.ContributorPayment.Add(contributorPayment);
                     _contributor.MobileNumber = contributor.MobileNumber;
                     _contributor.Email = contributor.Email;
@@ -136,7 +137,8 @@ namespace Reservation.Controllers.Api
 
 
                     contributorPayment.RefId = result.ref_id;
-                    contributorPayment.TransactionDate = DateTime.Now.Ticks;
+                    contributorPayment.card_pan = result.card_pan;
+                    contributorPayment.VerifyDate = DateTime.Now.Ticks;
                     contributorPayment.FinalStatusId = result.code;
                     _repository.ContributorPayment.Update(contributorPayment);
 

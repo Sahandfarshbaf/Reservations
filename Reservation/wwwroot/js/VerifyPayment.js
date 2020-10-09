@@ -32,17 +32,18 @@ function VerifyPayment() {
         contentType: "application/json; charset=utf-8",
         dataType: "text",
         success: function (response) {
-
+            $('#waitingpayment').hide();
+   
 
             if (response === "error") {
                 $('#successpayment').hide();
                 $('#failurepayment').show();
-               
+
 
             } else {
                 $('#successpayment').show();
                 $('#failurepayment').hide();
-               
+
 
             }
 
@@ -64,7 +65,8 @@ function VerifyPayment() {
 
 $(document).ready(() => {
 
-
+    $('#successpayment').hide();
+    $('#failurepayment').hide();
     Authority = getUrlParameter('Authority');
     Status = getUrlParameter('Status');
     VerifyPayment();

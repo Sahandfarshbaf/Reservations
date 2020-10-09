@@ -37,7 +37,7 @@ namespace Reservation
             services.AddControllers();
             //services.AddAutoMapper(typeof(Startup));
             services.ConfigureApplicationCookie(o => o.LoginPath = "/Account/Login");
-
+            services.AddControllers().AddNewtonsoftJson();
             services.AddControllersWithViews();
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation();

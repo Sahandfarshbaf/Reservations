@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/custom-animations.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
     <link href="/assets/css/rtl.css" rel="stylesheet" />
-    
+
 
 </head>
 
@@ -26,9 +26,9 @@
     <header class="header header-black fixed" style="min-height: 100px;">
         <div class="header-wrapper">
             <div class="container">
-                <div class="col-sm-2 col-xs-12 navigation-header">
+                <div class="col-sm-2 col-xs-12 navigation-header" style="padding: 0;">
                     <a href="#" class="logo">
-                        <img src="/assets/img/ventcamp_logo.png" alt="VentCamp" width="119" height="17" class="retina-hide">
+                        <img src="/assets/img/ventcamp_logo.png" alt="VentCamp" style="width: 100px; height: 100px;" class="retina-hide">
                         <img src="/assets/img/ventcamp_logo@2x.png" alt="VentCamp" width="119" height="17" class="retina-show">
                     </a>
                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-controls="navigation">
@@ -80,7 +80,7 @@
 
     <section class="section align-center">
         <div class="container">
-            <h5 class="heading-alt">خرید بلیط</h5>
+            <h3 class="heading-alt">خرید بلیط</h3>
         </div>
     </section>
 
@@ -88,9 +88,19 @@
         <div class="container">
             <div class="row text-center">
                 <div class="col-sm-12 ">
-                    <h1 id="successpayment"> پرداخت <span class="highlight">موفق</span></h1>
-                    <h1 id="failurepayment"> پرداخت <span class="highlight">ناموفق</span></h1>
-                    <br>
+                    <div id="waitingpayment"  >
+                        <img src="/assets/img/Waiting.gif" style="width: 250px;height: 250px">
+                        <h1> دریافت <span class="highlight">اطلاعات</span></h1>
+                    </div>
+                    <div id="successpayment" style="display: none;">
+                        <img src="/assets/img/SuccessPay.png" style="width: 150px; height: 150px">
+                        <h1> پرداخت <span class="highlight">موفق</span></h1>
+                    </div>
+                    <div id="failurepayment" style="display: none;">
+                        <img src="/assets/img/ErrorPay.png" style="width: 150px; height: 150px">
+                        <h1> پرداخت <span class="highlight">ناموفق</span></h1>
+                        <br>
+                    </div>
                 </div>
 
 
