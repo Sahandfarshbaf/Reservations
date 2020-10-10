@@ -16,9 +16,9 @@ namespace Reservation.Tools.ZarinPal
         public ZarinPalRequestResponse Request(ZarinPallRequest zarinPallRequest)
         {
             zarinPallRequest.merchant_id = merchant_id;
-            zarinPallRequest.callback_url = "https://localhost:44313/Home/VerifyPayment";
-            zarinPallRequest.metadata.mobile = "09353407341";
-            zarinPallRequest.metadata.email = "sahand.farshbaf@gmail.com";
+            zarinPallRequest.callback_url = "https://event.negahglobal.com/Home/VerifyPayment";
+            zarinPallRequest.metadata.mobile = "09381595705";
+            zarinPallRequest.metadata.email = "negahglobal@gmail.com";
 
             var body = JsonSerializer.Serialize(zarinPallRequest);
 

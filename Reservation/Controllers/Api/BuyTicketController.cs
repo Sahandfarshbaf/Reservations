@@ -40,7 +40,7 @@ namespace Reservation.Controllers.Api
                 var ticket = _repository.MeetingTicket.FindByCondition(c => c.MeetingTicketId == ticketTypeId && c.Count > 0).FirstOrDefault();
                 if (ticket == null)
                 {
-                    return BadRequest("All Ticket By This Type Has been Reserverd!");
+                    return BadRequest("تمام تیکت های انتخاب شده رزرو شده اند!");
                 }
 
                 var _contributor = _repository.Contributor.FindByCondition(c => c.NationalCode == contributor.NationalCode).FirstOrDefault();
@@ -55,7 +55,7 @@ namespace Reservation.Controllers.Api
 
                     ZarinPallRequest request = new ZarinPallRequest();
                     request.amount = (int)(ticket.Price.Value);
-                    request.description = "order NO: " + contributor.NationalCode;
+                    request.description = "شماره سفارش: " + contributor.NationalCode;
                     Tools.ZarinPal.ZarinPal zarinPal = new Tools.ZarinPal.ZarinPal();
                     var res = zarinPal.Request(request);
 

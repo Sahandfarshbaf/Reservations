@@ -18,7 +18,7 @@ namespace Reservation.Tools
 
             // create email message
             var email = new MimeMessage();
-            email.Sender = MailboxAddress.Parse("event@negahglobal.com");
+            email.Sender = MailboxAddress.Parse("negahglobal@gmail.com");
             email.To.Add(MailboxAddress.Parse(emaill));
 
             email.Subject = "خرید بلیط";
@@ -42,7 +42,7 @@ namespace Reservation.Tools
 
                 // office 365
                 //smtp.Connect("smtp.office365.com", 587, SecureSocketOptions.StartTls);
-                smtp.Authenticate("sahand.farshbaf@gmail.com", "sa19881213");
+                smtp.Authenticate("negahglobal@gmail.com", "123qwe!@#$");
                 smtp.Send(email);
                 smtp.Disconnect(true);
 

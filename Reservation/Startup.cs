@@ -35,7 +35,7 @@ namespace Reservation
             services.ConfigureSqlContext(Configuration);
             services.ConfigureRepositoryWrapper();
             services.AddControllers();
-            //services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(typeof(Startup));
             services.ConfigureApplicationCookie(o => o.LoginPath = "/Account/Login");
             services.AddControllers().AddNewtonsoftJson();
             services.AddControllersWithViews();
