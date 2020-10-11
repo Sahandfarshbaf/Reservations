@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "جزئیات بلیط";
     Layout = "~/Views/Shared/_Layout.cshtml";
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 }
 
 
@@ -25,6 +26,7 @@
                 </div>
 
                 <a href="#" class="btn btn-lg btn-outline-clr" data-modal-link="email-ticket">رزرو</a>
+                <a href="/home" class="btn btn-lg btn-outline-clr">بازگشت</a>
             </div>
         </div>
     </div>
@@ -68,6 +70,7 @@
         <fieldset class="col-sm-12">
             <label style="float: right" for="pass1">نوع بلیط</label>
             <select class="text-right" dir="rtl" style="float: right" id="Cmbtikcet">
+
 
             </select>
         </fieldset>

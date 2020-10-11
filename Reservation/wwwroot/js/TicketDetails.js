@@ -147,7 +147,7 @@ function Payment() {
 
 $(document).ready(() => {
 
-
+    $(".navigation-container").hide();
     meetingTicketId = getUrlParameter('meetingTicketId');
 
     GetMeetingTikcetParams();
