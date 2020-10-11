@@ -15,6 +15,7 @@ namespace Contracts
         IMeetingTicketRepository MeetingTicket { get; }
         IMeetingSpeakerRepository MeetingSpeaker { get; }
         ISpeakerRepository Speaker { get; }
+        IMeetingTicketParamRepository MeetingTicketParam { get; }
 
         void Save();
     }

@@ -22,5 +22,10 @@ namespace Reservation.Controllers
         {
             return View();
         }
+
+        public IActionResult Ticketdetails()
+        {
+            return View();
+        }
     }
 }

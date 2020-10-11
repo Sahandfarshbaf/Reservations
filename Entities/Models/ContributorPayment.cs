@@ -10,7 +10,7 @@ namespace Entities.Models
         public string TransactionCode { get; set; }
         public long? TransactionDate { get; set; }
         public long? Amount { get; set; }
-        public string card_pan { get; set; }
+        public string CardPan { get; set; }
         public long? RefId { get; set; }
         public int FinalStatusId { get; set; }
         public long? VerifyDate { get; set; }

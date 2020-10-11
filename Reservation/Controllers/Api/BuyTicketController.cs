@@ -137,7 +137,7 @@ namespace Reservation.Controllers.Api
 
 
                     contributorPayment.RefId = result.ref_id;
-                    contributorPayment.card_pan = result.card_pan;
+                    contributorPayment.CardPan = result.card_pan;
                     contributorPayment.VerifyDate = DateTime.Now.Ticks;
                     contributorPayment.FinalStatusId = result.code;
                     _repository.ContributorPayment.Update(contributorPayment);

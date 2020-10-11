@@ -1,4 +1,4 @@
-﻿
+﻿let innerhtml = '';
 
 function Payment() {
 
@@ -11,7 +11,7 @@ function Payment() {
         mobileNumber: $('#mobile').val(),
         email: $('#email').val(),
     }
-    
+
 
 
 
@@ -45,11 +45,105 @@ function Payment() {
 
 
 
+function GetMeetingTikcetType() {
+
+
+    let Html = ``;
+
+
+    jQuery.ajax({
+        type: "Get",
+        url: "/api/MeetingTicket/GetMeetingTikcetType?meetingId=1",
+        data: "",
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            debugger;
+
+            $.each(response, function (i, item) {
+                GetMeetingTikcetParams(item.meetingTicketId);
+                Html += `<div class="col-sm-3">
+                            <div class="package-column" >
+                            <h6 class="package-title">${item.meetingTicketType}</h6>
+                                <div class="package-price">
+                                <span class="currency">هزار تومان</span>${item.price / 10000}
+                                </div>
+                            <div class="package-detail" style="min-height: 300px;">
+                            <ul>`;
+
+
+                Html += innerhtml;
+                Html += ` </ul>
+                        </div>
+                        <a href="/home/Ticketdetails?meetingTicketId=${item.meetingTicketId}" class="btn btn-lg btn-outline-clr">جزئیات و رزرو</a>
+                    </div>
+                </div>`;
+            });
+
+
+
+            $('#MeetingTicketTypeDiv').html(Html);
+
+        },
+        error: function (response) {
+
+            console.log(response);
+
+        },
+        complete: function () {
+
+        }
+    });
+}
+
+function GetMeetingTikcetParams(meetingTicketId) {
+
+
+
+
+
+    jQuery.ajax({
+        type: "Get",
+        url: `/api/MeetingTicket/GetMeetingTikcetParams?meetingTicketId=${meetingTicketId}`,
+        data: "",
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+
+
+
+            innerhtml = `           <li style="direction: rtl; float: right;text-align: justify;"><span class="fa fa-check check-icon"></span>${response[0].description}</li>
+                                <li style="direction: rtl; float: right;text-align: justify;"><span class="fa fa-check check-icon"></span>${response[1].description}</li>
+                                <li style="direction: rtl; float: right;text-align: justify;"><span class="fa fa-check check-icon"></span>${response[2].description}</li>`;
+
+
+
+
+        },
+        error: function (response) {
+
+            console.log(response);
+
+        },
+        complete: function () {
+
+        }
+    });
+}
+
+
+
+
+
 
 
 
 
 $(document).ready(() => {
+
+    GetMeetingTikcetType();
 
     $(document.body).on('click', '#BuyTicket', function () {
 
@@ -93,6 +187,8 @@ $(document).ready(() => {
                         }
 
     });
+
+
 
 
 

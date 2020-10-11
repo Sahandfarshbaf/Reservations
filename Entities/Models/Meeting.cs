@@ -7,7 +7,6 @@ namespace Entities.Models
     {
         public Meeting()
         {
-
             MeetingSpeaker = new HashSet<MeetingSpeaker>();
             MeetingTicket = new HashSet<MeetingTicket>();
         }
@@ -18,7 +17,6 @@ namespace Entities.Models
         public string MeetingPlace { get; set; }
         public bool? IsActive { get; set; }
         public long? CreateDate { get; set; }
-
 
         public virtual ICollection<MeetingSpeaker> MeetingSpeaker { get; set; }
         public virtual ICollection<MeetingTicket> MeetingTicket { get; set; }
