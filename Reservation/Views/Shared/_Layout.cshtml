@@ -1,13 +1,105 @@
-﻿<!DOCTYPE html>
-
-<html>
+﻿<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Home</title>
+
+    <meta name="description" content="PSD to HTML5+CSS3 conversion.">
+    <meta name="keywords" content="PSD, HTML5, CSS3">
+    <meta name="author" content="Vivaco">
+
+    <link rel="shortcut icon" href="/assets/img/favicon.ico">
+    <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.jpg">
+    <link rel="apple-touch-icon" sizes="72x72" href="../assets/img/apple-touch-icon-72x72.jpg">
+    <link rel="apple-touch-icon" sizes="114x114" href="../assets/img/apple-touch-icon-114x114.jpg">
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/custom-animations.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <link href="/assets/css/rtl.css" rel="stylesheet" />
+
+
 </head>
+
 <body>
-    <div>
-        @RenderBody()
-    </div>
+    <header class="header header-black fixed" style="min-height: 100px;">
+        <div class="header-wrapper">
+            <div class="container">
+                <div class="col-sm-2 col-xs-12 navigation-header" style="padding: 0;">
+                    <a href="#" class="logo">
+                        <img src="/assets/img/ventcamp_logo.png" alt="VentCamp" style="width: 100px; height: 100px;" class="retina-hide">
+                        <img src="/assets/img/ventcamp_logo@2x.png" alt="VentCamp" width="119" height="17" class="retina-show">
+                    </a>
+                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-controls="navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="col-sm-10 col-xs-12 navigation-container" style=" float: right;">
+                    <div id="navigation" class="navbar-collapse collapse" style="max-height: 669px;">
+                        <ul class="navigation-list pull-left light-text">
+                            <li class="navigation-item"><a href="#contacts" class="navigation-link">تماس با ما</a></li>
+                            <li class="navigation-item"><a href="#speakers" class="navigation-link">سخنرانان</a></li>
+                            <li class="navigation-item"><a href="#schedule" class="navigation-link">زمانبندی</a></li>
+                            <li class="navigation-item"><a href="#prices" class="navigation-link">قیمت ها</a></li>
+                            <li class="navigation-item"><a href="#gallery" class="navigation-link">گالری</a></li>
+                            <li class="navigation-item"><a href="#sponsors" class="navigation-link">اسپانسرها</a></li>
+
+                            @*<li class="navigation-item dropdown">
+                                    <a class="navigation-link dropdown-toggle" data-toggle="dropdown">Elements</a>
+                                    <ul class="dropdown-menu" style="max-height: 770px;">
+                                        <li class="navigation-item"><a href="elements/contacts.html" class="navigation-link">Advanced Maps</a></li>
+                                        <li class="navigation-item"><a href="elements/buttons.html" class="navigation-link">Buttons</a></li>
+                                        <li class="navigation-item"><a href="elements/content.html" class="navigation-link">Content</a></li>
+                                        <li class="navigation-item"><a href="elements/counters.html" class="navigation-link">Counters</a></li>
+                                        <li class="navigation-item"><a href="elements/countdown.html" class="navigation-link">Countdown</a></li>
+                                        <li class="navigation-item"><a href="elements/call_to_action.html" class="navigation-link">Call to action</a></li>
+                                        <li class="navigation-item"><a href="elements/gallery.html" class="navigation-link">Gallery</a></li>
+                                        <li class="navigation-item"><a href="elements/navigations.html" class="navigation-link">Navigation</a></li>
+                                        <li class="navigation-item"><a href="elements/pricing.html" class="navigation-link">Prices</a></li>
+                                        <li class="navigation-item"><a href="elements/schedule.html" class="navigation-link">Schedule</a></li>
+                                        <li class="navigation-item"><a href="ho/speakers.html" class="navigation-link">Speakers</a></li>
+                                        <li class="navigation-item"><a href="elements/tabs.html" class="navigation-link">Tabs</a></li>
+                                        <li class="navigation-item"><a href="elements/tables.html" class="navigation-link">Tables</a></li>
+                                        <li class="navigation-item"><a href="elements/testimonials.html" class="navigation-link">Testimonials</a></li>
+                                        <li class="navigation-item"><a href="elements/typography.html" class="navigation-link">Typography</a></li>
+                                        <li class="navigation-item"><a href="elements/sponsors.html" class="navigation-link">Sponsors</a></li>
+                                    </ul>
+                                </li>*@
+                        </ul>
+
+                        @*<a href="#" class="pull-right buy-btn">Buy Tickets</a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    @RenderBody();
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <script type="text/javascript" src="/assets/js/jquery-2.1.4.min.js?ver=1"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3&amp;libraries=places"></script>
+    <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="/assets/js/toastr.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.waypoints.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.appear.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.plugin.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.countTo.js"></script>
+    <script type="text/javascript" src="/assets/js/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="/assets/js/modal-box.js"></script>
+    <script src="~/assets/js/jquery.countdown.js"></script>
+
+  
+@RenderSection("Scripts", required: false)
+
 </body>
 </html>

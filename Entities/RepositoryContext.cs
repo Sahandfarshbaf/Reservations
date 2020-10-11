@@ -16,8 +16,9 @@ namespace Entities
         public virtual DbSet<ContributorPayment> ContributorPayment { get; set; }
         public virtual DbSet<ContributorTicket> ContributorTicket { get; set; }
         public virtual DbSet<Meeting> Meeting { get; set; }
-      public virtual DbSet<MeetingSpeaker> MeetingSpeaker { get; set; }
+        public virtual DbSet<MeetingSpeaker> MeetingSpeaker { get; set; }
         public virtual DbSet<MeetingTicket> MeetingTicket { get; set; }
+        public virtual DbSet<MeetingTicketParam> MeetingTicketParam { get; set; }
         public virtual DbSet<Speaker> Speaker { get; set; }
 
         public RepositoryContext(DbContextOptions<RepositoryContext> options)
@@ -31,6 +32,8 @@ namespace Entities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.HasAnnotation("Relational:DefaultSchema", "yabande1_event");
 
             modelBuilder.Entity<Contributor>(entity =>
             {
@@ -47,6 +50,12 @@ namespace Entities
 
             modelBuilder.Entity<ContributorPayment>(entity =>
             {
+                entity.HasIndex(e => e.ContributorTicketId);
+
+                entity.Property(e => e.CardPan)
+                    .HasColumnName("card_pan")
+                    .HasMaxLength(100);
+
                 entity.Property(e => e.TransactionCode)
                     .HasColumnName("transactionCode")
                     .HasMaxLength(100);
@@ -59,6 +68,10 @@ namespace Entities
 
             modelBuilder.Entity<ContributorTicket>(entity =>
             {
+                entity.HasIndex(e => e.ContributorId);
+
+                entity.HasIndex(e => e.MeetingTicketId);
+
                 entity.HasOne(d => d.Contributor)
                     .WithMany(p => p.ContributorTicket)
                     .HasForeignKey(d => d.ContributorId)
@@ -81,6 +94,10 @@ namespace Entities
 
             modelBuilder.Entity<MeetingSpeaker>(entity =>
             {
+                entity.HasIndex(e => e.MeetingId);
+
+                entity.HasIndex(e => e.SpeakerId);
+
                 entity.HasOne(d => d.Meeting)
                     .WithMany(p => p.MeetingSpeaker)
                     .HasForeignKey(d => d.MeetingId)
@@ -94,10 +111,22 @@ namespace Entities
 
             modelBuilder.Entity<MeetingTicket>(entity =>
             {
+                entity.HasIndex(e => e.MeetingId);
+
                 entity.HasOne(d => d.Meeting)
                     .WithMany(p => p.MeetingTicket)
                     .HasForeignKey(d => d.MeetingId)
                     .HasConstraintName("FK_MeetingTicket_Meeting");
+            });
+
+            modelBuilder.Entity<MeetingTicketParam>(entity =>
+            {
+                entity.Property(e => e.MeetingTicketParamId).HasColumnName("MeetingTicketParamID");
+
+                entity.HasOne(d => d.MeetingTicket)
+                    .WithMany(p => p.MeetingTicketParam)
+                    .HasForeignKey(d => d.MeetingTicketId)
+                    .HasConstraintName("FK_MeetingTicketParam_MeetingTicket");
             });
 
             modelBuilder.Entity<Speaker>(entity =>
@@ -109,7 +138,6 @@ namespace Entities
                 entity.Property(e => e.LastName).HasMaxLength(100);
             });
 
- 
 
         }
 

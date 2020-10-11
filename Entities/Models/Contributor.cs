@@ -8,7 +8,6 @@ namespace Entities.Models
         public Contributor()
         {
             ContributorTicket = new HashSet<ContributorTicket>();
-
         }
 
         public long ContributorId { get; set; }
@@ -19,6 +18,5 @@ namespace Entities.Models
         public string Email { get; set; }
 
         public virtual ICollection<ContributorTicket> ContributorTicket { get; set; }
-   
     }
 }

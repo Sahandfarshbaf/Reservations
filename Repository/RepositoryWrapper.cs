@@ -4,6 +4,7 @@ using System.Text;
 using Contarcts;
 using Contracts;
 using Entities;
+using Entities.Models;
 
 namespace Repository
 {
@@ -17,6 +18,7 @@ namespace Repository
         private IMeetingTicketRepository _meetingTicket;
         private IMeetingSpeakerRepository _meetingSpeaker;
         private ISpeakerRepository _speaker;
+        private IMeetingTicketParamRepository _meetingTicketParam;
 
 
         public IContributorRepository Contributor => _contributor ??= new ContributorRepository(_repoContext);
@@ -26,6 +28,7 @@ namespace Repository
         public IMeetingTicketRepository MeetingTicket => _meetingTicket ??= new MeetingTicketRepository(_repoContext);
         public IMeetingSpeakerRepository MeetingSpeaker => _meetingSpeaker ??= new MeetingSpeakerRepository(_repoContext);
         public ISpeakerRepository Speaker => _speaker ??= new SpeakerRepository(_repoContext);
+        public IMeetingTicketParamRepository MeetingTicketParam => _meetingTicketParam ??= new MeetingTicketParamRepository(_repoContext);
 
 
 
