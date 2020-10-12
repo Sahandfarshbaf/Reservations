@@ -42,7 +42,7 @@ namespace Reservation.Tools
 
                 // office 365
                 //smtp.Connect("smtp.office365.com", 587, SecureSocketOptions.StartTls);
-                smtp.Authenticate("negahglobal@gmail.com", "123qwe!@#$");
+                smtp.Authenticate("negahglobal@gmail.com", "%^&ui980");
                 smtp.Send(email);
                 smtp.Disconnect(true);
 
