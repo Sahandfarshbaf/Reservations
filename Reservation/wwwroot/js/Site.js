@@ -13,7 +13,7 @@ function Payment() {
     }
 
 
-
+    debugger 
 
 
     jQuery.ajax({
@@ -31,7 +31,7 @@ function Payment() {
 
         },
         error: function (response) {
-
+            debugger 
             console.log(response);
 
 

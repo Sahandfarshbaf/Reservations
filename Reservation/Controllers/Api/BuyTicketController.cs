@@ -43,6 +43,9 @@ namespace Reservation.Controllers.Api
                     return BadRequest("تمام تیکت های انتخاب شده رزرو شده اند!");
                 }
 
+                var ticketno = _repository.ContributorPayment.FindAll().Max(c => c.TicketNo) + 1;
+
+
                 var _contributor = _repository.Contributor.FindByCondition(c => c.NationalCode == contributor.NationalCode).FirstOrDefault();
                 if (_contributor == null)
                 {
@@ -60,6 +63,8 @@ namespace Reservation.Controllers.Api
                     var res = zarinPal.Request(request);
 
                     ContributorPayment contributorPayment = new ContributorPayment();
+
+                    contributorPayment.TicketNo = ticketno;
                     contributorPayment.Amount = ticket.Price.Value;
                     contributorPayment.ContributorTicketId = contributorTicket.ContributorTicketId;
                     contributorPayment.TransactionCode = res.authority;
@@ -73,8 +78,9 @@ namespace Reservation.Controllers.Api
                 {
                     ContributorTicket contributorTicket = new ContributorTicket();
                     contributorTicket.MeetingTicketId = ticket.MeetingTicketId;
+                    contributorTicket.ContributorId = _contributor.ContributorId;
 
-                    _contributor.ContributorTicket.Add(contributorTicket);
+
 
                     ZarinPallRequest request = new ZarinPallRequest();
                     request.amount = (int)(ticket.Price.Value);
@@ -83,15 +89,20 @@ namespace Reservation.Controllers.Api
                     var res = zarinPal.Request(request);
 
                     ContributorPayment contributorPayment = new ContributorPayment();
+                    contributorPayment.TicketNo = ticketno;
                     contributorPayment.Amount = ticket.Price.Value;
                     contributorPayment.ContributorTicketId = contributorTicket.ContributorTicketId;
                     contributorPayment.TransactionCode = res.authority;
                     contributorPayment.TransactionDate = DateTime.Now.Ticks;
-                    contributorTicket.ContributorPayment.Add(contributorPayment);
+
                     _contributor.MobileNumber = contributor.MobileNumber;
                     _contributor.Email = contributor.Email;
                     _contributor.FirstName = contributor.FirstName;
                     _contributor.LastName = contributor.LastName;
+
+                    contributorTicket.ContributorPayment.Add(contributorPayment);
+                    _contributor.ContributorTicket.Add(contributorTicket);
+
                     _repository.Contributor.Update(_contributor);
                     _repository.Save();
                     return Ok("https://www.zarinpal.com/pg/StartPay/" + res.authority);
@@ -155,7 +166,7 @@ namespace Reservation.Controllers.Api
                     sendEmail.SendSuccessfullBuy(contributor.FirstName + " " + contributor.LastName, Authority, contributor.Email);
 
 
-                    return Ok("success");
+                    return Ok(contributorPayment.TicketNo);
                 }
                 else
                 {

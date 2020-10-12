@@ -23,7 +23,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 function VerifyPayment() {
 
-
+    debugger;
     jQuery.ajax({
         type: "Get",
         url: `/api/BuyTicket/VerifyPayment?Authority=${Authority}&Status=${Status}`,
@@ -43,6 +43,7 @@ function VerifyPayment() {
             } else {
                 $('#successpayment').show();
                 $('#failurepayment').hide();
+                $('#ticketNo').html(response);
 
 
             }

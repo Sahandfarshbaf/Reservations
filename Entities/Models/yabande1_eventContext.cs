@@ -1,14 +1,17 @@
 ﻿using System;
-using Entities.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Entities
+namespace Entities.Models
 {
-    public partial class RepositoryContext :DbContext
+    public partial class yabande1_eventContext : DbContext
     {
-        public RepositoryContext()
+        public yabande1_eventContext()
+        {
+        }
+
+        public yabande1_eventContext(DbContextOptions<yabande1_eventContext> options)
+            : base(options)
         {
         }
 
@@ -21,20 +24,17 @@ namespace Entities
         public virtual DbSet<MeetingTicketParam> MeetingTicketParam { get; set; }
         public virtual DbSet<Speaker> Speaker { get; set; }
 
-        public RepositoryContext(DbContextOptions<RepositoryContext> options)
-            : base(options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Data Source=185.55.224.80;Initial Catalog=yabande1_event;User ID=yabande1_event;Password=123qwe!@#$;MultipleActiveResultSets=true");
+            }
         }
-
-
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.HasAnnotation("Relational:DefaultSchema", "yabande1_event");
-
             modelBuilder.HasAnnotation("Relational:DefaultSchema", "yabande1_event");
 
             modelBuilder.Entity<Contributor>(entity =>
@@ -141,8 +141,10 @@ namespace Entities
 
                 entity.Property(e => e.LastName).HasMaxLength(100);
             });
+
+            OnModelCreatingPartial(modelBuilder);
         }
 
-
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
