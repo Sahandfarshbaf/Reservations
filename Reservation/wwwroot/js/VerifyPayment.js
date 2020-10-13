@@ -23,8 +23,8 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 function VerifyPayment() {
 
-    debugger;
-    jQuery.ajax({
+   
+    $.ajax({
         type: "Get",
         url: `/api/BuyTicket/VerifyPayment?Authority=${Authority}&Status=${Status}`,
         data: "",
