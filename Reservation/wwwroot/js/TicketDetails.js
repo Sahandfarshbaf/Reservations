@@ -71,7 +71,7 @@ function GetMeetingTikcetTypeById() {
 
 
             $("#typeName").html(response.meetingTicketType);
-            $("#price").html(response.price / 10000);
+            $("#price").html(response.price / 10000000);
             $("#Cmbtikcet").html(`<option style="float: right" value="${meetingTicketId}">${response.meetingTicketType}</option>`)
 
 

@@ -67,7 +67,7 @@ function GetMeetingTikcetType() {
                             <div class="package-column" >
                             <h6 class="package-title">${item.meetingTicketType}</h6>
                                 <div class="package-price">
-                                <span class="currency">هزار تومان</span>${item.price / 10000}
+                                <span class="currency">میلیون تومان</span>${item.price / 10000000}
                                 </div>
                             <div class="package-detail" style="min-height: 300px;">
                             <ul>`;
