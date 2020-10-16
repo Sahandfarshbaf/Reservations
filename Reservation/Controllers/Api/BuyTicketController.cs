@@ -43,7 +43,7 @@ namespace Reservation.Controllers.Api
                     return BadRequest("تمام تیکت های انتخاب شده رزرو شده اند!");
                 }
 
-                var ticketno = 1000;
+                var ticketno = 10000;
                 try
                 {
                     ticketno = _repository.ContributorPayment.FindAll().Max(c => c.TicketNo) + 1;
