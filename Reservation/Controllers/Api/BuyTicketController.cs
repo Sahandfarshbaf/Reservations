@@ -43,7 +43,15 @@ namespace Reservation.Controllers.Api
                     return BadRequest("تمام تیکت های انتخاب شده رزرو شده اند!");
                 }
 
-                var ticketno = _repository.ContributorPayment.FindAll().Max(c => c.TicketNo) + 1;
+                var ticketno = 1000;
+                try
+                {
+                    ticketno = _repository.ContributorPayment.FindAll().Max(c => c.TicketNo) + 1;
+                }
+                catch (Exception e)
+                {
+                   
+                }
 
 
                 var _contributor = _repository.Contributor.FindByCondition(c => c.NationalCode == contributor.NationalCode).FirstOrDefault();
