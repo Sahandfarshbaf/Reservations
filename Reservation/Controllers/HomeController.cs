@@ -17,6 +17,10 @@ namespace Reservation.Controllers
         {
             return View();
         }
+        public IActionResult TicketLists()
+        {
+            return View();
+        }
 
         public IActionResult VerifyPayment()
         {
