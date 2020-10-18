@@ -100,9 +100,6 @@ function Payment() {
     }
 
 
-
-
-
     jQuery.ajax({
         type: "Post",
         url: `/api/BuyTicket/BuyTicketInsert?ticketTypeId=${$("#Cmbtikcet").val()}`,
@@ -112,9 +109,7 @@ function Payment() {
         dataType: "text",
         success: function (response) {
 
-            if (response != "") {
-                window.location = response;
-            }
+            window.location = `/Home/TicketLists?Ncode=${contributor.nationalCode}&Mobile=${contributor.mobileNumber}`;
 
         },
         error: function (response) {

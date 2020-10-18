@@ -14,7 +14,7 @@ namespace Entities.Models
         public long? RefId { get; set; }
         public int FinalStatusId { get; set; }
         public long? VerifyDate { get; set; }
-        public int TicketNo { get; set; }
+        public string TicketNo { get; set; }
 
         public virtual ContributorTicket ContributorTicket { get; set; }
     }

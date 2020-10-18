@@ -1,0 +1,66 @@
+﻿
+
+@{
+    ViewData["Title"] = "خرید بلیط";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="section align-center">
+    <div class="container">
+        <h3 class="heading-alt">لیست بلیط</h3>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row text-center" dir="rtl" style="float: right">
+
+
+
+            <fieldset class="col-sm-4">
+                <br />
+                <a href="#prices" id="GetTickets" class="btn btn-md">مشاهده بلیط ها</a>
+            </fieldset>
+            <fieldset class="col-sm-4">
+                <label style="float: right" for="txtMobile">شماره موبایل</label>
+                <input id="txtMobile" name="txtMobile" type="text">
+            </fieldset>
+            <fieldset class="col-sm-4">
+                <label style="float: right" for="txtNationalCode">کدملی</label>
+                <input id="txtNationalCode" name="txtNationalCode" type="text">
+            </fieldset>
+
+
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="col-sm-12" style="direction: rtl; padding: 10px;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ردیف</th>
+                    <th>نام همایش</th>
+                    <th>نوع بلیط</th>
+                    <th>مبلغ</th>
+                    <th>وضعیت پرداخت</th>
+                    <th>شماره بلیط</th>
+                    <th>پرداخت</th>
+                </tr>
+            </thead>
+            <tbody class="text-center" id="TicketListTable">
+           
+          
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+
+@section scripts {
+    <script src="~/js/TicketLists.js"></script>
+}
+
