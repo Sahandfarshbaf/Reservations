@@ -51,7 +51,7 @@ function GetTicketLists() {
                             <td>${status}</td>
                             <td>${tikcet}</td>`;
                 if (pay === 0) {
-                    html += ` <td><input type="button" class="btn btn-success btn-sm payment" value="پرداخت"  contributorPaymentId=${item.contributorPaymentId} /></td>
+                    html += ` <td><input type="button" class="btn btn-md btn-sm payment" value="پرداخت"  contributorPaymentId=${item.contributorPaymentId} /></td>
                           </tr>`;
 
                 }

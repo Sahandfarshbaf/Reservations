@@ -21,12 +21,12 @@ namespace Reservation.Tools
             email.Sender = MailboxAddress.Parse("negahglobal@gmail.com");
             email.To.Add(MailboxAddress.Parse(emaill));
 
-            email.Subject = "خرید بلیط";
+            email.Subject = "خرید پکیج";
             var body = fullName + " عزیز";
             body += System.Environment.NewLine;
-            body += "خرید بلیط همایش شوالیه مدیران برتر با موفقیت انجام پذیرفت";
+            body += "خرید پکیج همایش شوالیه مدیران برتر با موفقیت انجام پذیرفت";
             body += System.Environment.NewLine;
-            body += "شماره بلیط:  ";
+            body += "شماره پکیج:  ";
             
             body += ticketNo;
            

@@ -1,14 +1,14 @@
 ﻿
 
 @{
-    ViewData["Title"] = "خرید بلیط";
+    ViewData["Title"] = "خرید پکیج";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 <section class="section align-center">
     <div class="container">
-        <h3 class="heading-alt">لیست بلیط</h3>
+        <h3 class="heading-alt">لیست پکیج سفارش</h3>
     </div>
 </section>
 
@@ -18,19 +18,21 @@
 
 
 
-            <fieldset class="col-sm-4">
+      
                 <br />
-                <a href="#prices" id="GetTickets" class="btn btn-md">مشاهده بلیط ها</a>
-            </fieldset>
-            <fieldset class="col-sm-4">
-                <label style="float: right" for="txtMobile">شماره موبایل</label>
-                <input id="txtMobile" name="txtMobile" type="text">
-            </fieldset>
-            <fieldset class="col-sm-4">
-                <label style="float: right" for="txtNationalCode">کدملی</label>
-                <input id="txtNationalCode" name="txtNationalCode" type="text">
-            </fieldset>
-
+                <p align="right">  <a href="/home" id="GetTickets" class="btn btn-md">بازگشت</a></p>
+               
+           
+            <p>توجه: با توجه به سقف پرداخت 50 میلیون تومان از طریق درگاه الکترونیکی، پرداخت پکیج ویژه در دو مرحله انجام می پذیرد.</p>
+            <!--<fieldset class="col-sm-4">
+        <label style="float: right" for="txtMobile">شماره موبایل</label>
+        <input id="txtMobile" name="txtMobile" type="text">
+    </fieldset>
+    <fieldset class="col-sm-4">
+        <label style="float: right" for="txtNationalCode">کدملی</label>
+        <input id="txtNationalCode" name="txtNationalCode" type="text">
+    </fieldset>
+        -->
 
         </div>
     </div>
@@ -43,10 +45,10 @@
                 <tr>
                     <th>ردیف</th>
                     <th>نام همایش</th>
-                    <th>نوع بلیط</th>
+                    <th>نوع پکیج</th>
                     <th>مبلغ</th>
                     <th>وضعیت پرداخت</th>
-                    <th>شماره بلیط</th>
+                    <th>شماره پکیج</th>
                     <th>پرداخت</th>
                 </tr>
             </thead>

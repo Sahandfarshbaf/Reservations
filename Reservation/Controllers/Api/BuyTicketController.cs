@@ -98,7 +98,7 @@ namespace Reservation.Controllers.Api
                     _repository.Contributor.Create(contributor);
                     _repository.Save();
 
-                   
+
                     return Ok("");
                 }
                 else
@@ -263,18 +263,18 @@ namespace Reservation.Controllers.Api
 
 
                 var ticketList = _repository.ContributorPayment
-        .FindByCondition(c => c.ContributorTicket.ContributorId == cobtributor.ContributorId)
-        .Include(c => c.ContributorTicket).ThenInclude(c => c.MeetingTicket).ThenInclude(c => c.Meeting)
-        .Select(c => new
-        {
-            c.ContributorPaymentId,
-            MeetingName = c.ContributorTicket.MeetingTicket.Meeting.MeetingTitle,
-            MeetingTicketType = c.ContributorTicket.MeetingTicket.MeetingTicketType,
-            Amount = c.Amount,
-            TicketNo = c.TicketNo,
-            c.FinalStatusId,
-            c.TransactionCode
-        }).ToList();
+                .FindByCondition(c => c.ContributorTicket.ContributorId == cobtributor.ContributorId)
+                .Include(c => c.ContributorTicket).ThenInclude(c => c.MeetingTicket).ThenInclude(c => c.Meeting)
+                .Select(c => new
+                {
+                    c.ContributorPaymentId,
+                    MeetingName = c.ContributorTicket.MeetingTicket.Meeting.MeetingTitle,
+                    MeetingTicketType = c.ContributorTicket.MeetingTicket.MeetingTicketType,
+                    Amount = c.Amount,
+                    TicketNo = c.TicketNo,
+                    c.FinalStatusId,
+                    c.TransactionCode
+                }).ToList();
                 return Ok(ticketList);
             }
             catch (Exception e)

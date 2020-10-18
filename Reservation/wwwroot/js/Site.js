@@ -112,11 +112,11 @@ function GetMeetingTikcetParams(meetingTicketId) {
         dataType: "json",
         success: function (response) {
 
+            
 
-
-            innerhtml = `           <li style="direction: rtl; float: right;text-align: justify;"><span class="fa fa-check check-icon"></span>${response[0].description}</li>
-                                <li style="direction: rtl; float: right;text-align: justify;"><span class="fa fa-check check-icon"></span>${response[1].description}</li>
-                                <li style="direction: rtl; float: right;text-align: justify;"><span class="fa fa-check check-icon"></span>${response[2].description}</li>`;
+            innerhtml = `           <li style="direction: rtl; float: right;text-align: justify;"><img src="../assets/img/li.png" alt="." />${response[0].description}</li>
+                                <li style="direction: rtl; float: right;text-align: justify;"><img src="../assets/img/li.png" alt="." />${response[1].description}</li>
+                                <li style="direction: rtl; float: right;text-align: justify;"><img src="../assets/img/li.png" alt="." />${response[2].description}</li>`;
 
 
 
